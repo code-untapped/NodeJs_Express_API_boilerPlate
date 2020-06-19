@@ -1,0 +1,30 @@
+{
+    "name": "nodejs_express_api_boilerplate",
+    "version": "1.0.0",
+    "description": "A basic node Js express API in a dockerized",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon --exec babel-node ./src/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/code-untapped/NodeJs_Express_API_boilerPlate.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/code-untapped/NodeJs_Express_API_boilerPlate/issues"
+    },
+    "homepage": "https://github.com/code-untapped/NodeJs_Express_API_boilerPlate#readme",
+    "dependencies": {
+        "@babel/core": "^7.10.2",
+        "@babel/node": "^7.10.1",
+        "@babel/preset-env": "^7.10.2",
+        "axios": "^0.19.2",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "nodemon": "^2.0.4"
+    }
+}

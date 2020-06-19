@@ -1,0 +1,12 @@
+version: '3'
+services:
+  nodejs_express_api_boilerplate:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+    - "80:8080"
+    volumes:
+    - /Users/joshthom/Documents/GitHub/NodeJs_Express_API_boilerPlate:/usr/src/app
+volumes:
+  code: {} 
