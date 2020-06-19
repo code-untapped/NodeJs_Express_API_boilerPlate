@@ -1,11 +1,10 @@
 import express from "express";
 import { updateUserDetails, deleteUser } from "../services/user_service";
 import { userData } from "../controllers/data_controller";
-import { tokenFormater } from "../services/auth_service"
+import { tokenFormater } from "../services/auth_service";
 
 var router = express.Router();
 
-//Routes
 // GET all Users
 router.get("/api/v1/users", async(req, res) => {
     try {
@@ -14,7 +13,6 @@ router.get("/api/v1/users", async(req, res) => {
         throw error
     }
 });
-
 
 //PATCH Change user details
 router.patch("/api/v1/user/update", async(req, res) => {

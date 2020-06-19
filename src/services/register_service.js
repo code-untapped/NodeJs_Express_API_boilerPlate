@@ -15,7 +15,6 @@ export const registerUser = async(newUser, token) => {
 
     let duplicateUser = false;
 
-
     try {
         userData.map(user => {
             if (user.email === newUser.email) {

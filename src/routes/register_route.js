@@ -17,6 +17,4 @@ router.post("/api/v1/register", async(req, res) => {
     }
 })
 
-
-
 export default router;

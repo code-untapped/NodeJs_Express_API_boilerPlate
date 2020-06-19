@@ -3,6 +3,7 @@ import cors from "cors";
 import login from "./routes/login_route";
 import users from "./routes/users_route";
 import register from "./routes/register_route";
+import upload from "./routes/upload_route";
 
 const app = express();
 
@@ -28,9 +29,7 @@ app.options("*", cors(options)); //enable pre-flight
 app.use(login);
 app.use(users);
 app.use(register);
-// app.use(search);
-// app.use(upload);
-
+app.use(upload);
 
 // This root is needed if you want to run this in the cloud
 router.get("/", (async(req, res) => { res.send('root'); }));
@@ -43,8 +42,6 @@ try {
         );
     });
 
-} catch (err) {
-    console.log(err);
+} catch (error) {
+    console.log(error);
 }
-
-/// do a GET, PUT, POST, DELETE example for the mock json data
