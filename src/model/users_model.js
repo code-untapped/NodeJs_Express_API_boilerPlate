@@ -1,10 +1,11 @@
 import { model, Schema } from 'mongoose';
 
 var UsersSchema = new Schema({
-    fullname: String,
-    username: String,
-    email: Array,
-    password: String,
+    first_name: String,
+    last_name: String,
+    email: String,
+    gender: String,
+    password: String
 });
 
 export var Users = model("users", UsersSchema);
