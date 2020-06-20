@@ -13,45 +13,52 @@ export const registerUser = async(newUser, token) => {
         body: "Not admin"
     }
 
+
+
     let duplicateUser = false;
 
-    try {
-        userData.map(user => {
-            if (user.email === newUser.email) {
-                duplicateUser = true;
-            }
-        });
+    if (await isAdmin(token) === true) {
 
-        if (!duplicateUser) {
-            let lastUserId = (userData[userData.length - 1].id) + 1;
-
-            userData.push({
-                id: lastUserId,
-                first_name: newUser.first_name,
-                last_name: newUser.last_name,
-                email: newUser.email,
-                gender: newUser.gender,
-                password: newUser.password,
-                admin: newUser.admin,
-                token: uuidv4()
+        try {
+            userData.map(user => {
+                if (user.email === newUser.email) {
+                    duplicateUser = true;
+                }
             });
 
-            const updateData = await writeToFile(userData);
+            if (!duplicateUser) {
+                let lastUserId = (userData[userData.length - 1].id) + 1;
 
-            if (updateData.status === 201) return {
-                status: 201,
-                body: "User created"
+                userData.push({
+                    id: lastUserId,
+                    first_name: newUser.first_name,
+                    last_name: newUser.last_name,
+                    email: newUser.email,
+                    gender: newUser.gender,
+                    password: newUser.password,
+                    admin: newUser.admin,
+                    token: uuidv4()
+                });
+
+                const updateData = await writeToFile(userData);
+
+                if (updateData.status === 201) return {
+                    status: 201,
+                    body: "User created"
+                }
+
+            } else {
+                return {
+                    status: 405,
+                    body: `${newUser.email} already exists`
+                }
             }
 
-        } else {
-            return {
-                status: 405,
-                body: `${newUser.email} already exists`
-            }
+        } catch (error) {
+            throw error
         }
-
-    } catch (error) {
-        throw error
+    } else return {
+        status: 403,
+        body: "Not admin"
     }
-
 };
