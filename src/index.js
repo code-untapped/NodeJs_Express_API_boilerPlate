@@ -4,6 +4,7 @@ import login from "./routes/login_route";
 import users from "./routes/users_route";
 import register from "./routes/register_route";
 import upload from "./routes/upload_route";
+import fileUpload from "express-fileupload";
 
 const app = express();
 
@@ -18,6 +19,7 @@ const options = {
 var router = express.Router();
 
 // middleware
+app.use(fileUpload());
 app.use(cors());
 app.use(express.json());
 app.use(router);

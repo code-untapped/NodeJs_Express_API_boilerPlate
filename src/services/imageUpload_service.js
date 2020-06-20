@@ -1,4 +1,5 @@
-import multer from "multer";
+import fileUpload from "express-fileupload";
+fileUpload();
 
 export const imageUpload = async(file, token) => {
     if (!token || token.length === 0) return {
@@ -6,34 +7,9 @@ export const imageUpload = async(file, token) => {
         body: "No token"
     }
 
-    console.log(file)
+    const uploadPath = "./public/uploads/" + Date.now() + "_" + file.name;
 
-    var storage = multer.diskStorage({
-        destination: function(req, file, cb) {
-            cb(null, 'uploads')
-        },
-        filename: function(req, file, cb) {
-            cb(null, file.fieldname + '-' + Date.now())
-        }
-    })
-
-    const upload = multer({
-        storage: storage,
-        limits: {
-            files: 1,
-            fileSize: 5000
-        }
-    }).single("file");
-
-    try {
-        await upload(file);
-
-    } catch (error) {
-        throw error
-    }
-
-
-
-
-
+    await file.mv(uploadPath, (err) => {
+        if (err) throw err;
+    });
 }
