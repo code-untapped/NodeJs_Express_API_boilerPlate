@@ -13,8 +13,6 @@ export const registerUser = async(newUser, token) => {
         body: "Not admin"
     }
 
-
-
     let duplicateUser = false;
 
     if (await isAdmin(token) === true) {
